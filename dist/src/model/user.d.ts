@@ -23,11 +23,9 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { IRole } from "./role";
 interface IUser {
     username?: String;
     password?: String;
-    role?: IRole;
 }
 declare const User: import("mongoose").Model<IUser, {}, {}, {}, any>;
 export { User };
