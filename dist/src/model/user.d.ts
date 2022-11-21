@@ -26,6 +26,7 @@
 interface IUser {
     username?: String;
     password?: String;
+    phoneNumber?: String;
 }
 declare const User: import("mongoose").Model<IUser, {}, {}, {}, any>;
 export { User };

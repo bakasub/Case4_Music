@@ -11,10 +11,10 @@ class UserController {
     constructor() {
         this.register = async (req, res) => {
             let user = req.body;
-            let userFind = await user_1.User.findOne({
-                username: user.username
+            let checkUsername = await user_1.User.findOne({
+                username: user.username,
             });
-            if (userFind) {
+            if (checkUsername) {
                 return res.status(200).json({
                     message: 'User name exist'
                 });
@@ -22,6 +22,21 @@ class UserController {
             else if (user.username === '' && user.password === '') {
                 return res.status(200).json({
                     message: 'User name or password is empty!'
+                });
+            }
+            else if (user.username.length < 6) {
+                return res.status(200).json({
+                    message: 'Invalid name!!'
+                });
+            }
+            else if (user.password.length < 6 || user.password.length > 8) {
+                return res.status(200).json({
+                    message: 'Invalid password!!'
+                });
+            }
+            else if (user.phoneNumber.length <= 9) {
+                return res.status(200).json({
+                    message: 'Invalid phone number!!'
                 });
             }
             else {
