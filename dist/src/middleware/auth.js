@@ -12,21 +12,27 @@ const auth = (req, res, next) => {
         let accessToken = authorization.split(' ')[1];
         if (!accessToken) {
             res.status(401).json({
-                message: 'You are anonymous'
+                message: 'You are anonymous!'
             });
         }
         else {
             jsonwebtoken_1.default.verify(accessToken, exports.SECRET, (err, data) => {
                 if (err) {
                     res.status(401).json({
-                        message: 'You are anonymous'
+                        message: 'You are anonymous!'
                     });
                 }
                 else {
                     req.decode = data;
+                    next();
                 }
             });
         }
+    }
+    else {
+        res.status(401).json({
+            message: 'You are anonymous!'
+        });
     }
 };
 exports.auth = auth;
