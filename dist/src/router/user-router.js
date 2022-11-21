@@ -7,6 +7,6 @@ exports.userRouter = void 0;
 const express_1 = require("express");
 const user_controller_1 = __importDefault(require("../controller/user-controller"));
 exports.userRouter = (0, express_1.Router)();
-exports.userRouter.get('/song', user_controller_1.default.getAll);
-exports.userRouter.post('/song', user_controller_1.default.addUser);
+exports.userRouter.get('/user', user_controller_1.default.getAll);
+exports.userRouter.post('/user', user_controller_1.default.addUser);
 //# sourceMappingURL=user-router.js.map

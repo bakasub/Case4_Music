@@ -26,6 +26,7 @@
 import { IUser } from "./user";
 interface ISong {
     User?: IUser;
+    name?: string;
     artist?: string;
     image?: string;
     file?: string;

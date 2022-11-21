@@ -3,6 +3,7 @@ import {IUser} from "./user";
 
 interface ISong {
     User?: IUser;
+    name?: string;
     artist?: string;
     image?: string;
     file?: string;
@@ -16,6 +17,7 @@ const songSchema = new Schema<ISong>({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
+    name:String,
     artist: String,
     image: String,
     file: String,
