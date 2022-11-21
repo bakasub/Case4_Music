@@ -7,6 +7,6 @@ const playlistSchema = new mongoose_1.Schema({
     playlistName: String,
     createDate: String,
 });
-const Playlist = (0, mongoose_1.model)('Playlist', playlistSchema);
+const Playlist = (0, mongoose_1.model)("playlist", playlistSchema);
 exports.Playlist = Playlist;
 //# sourceMappingURL=playlist.js.map

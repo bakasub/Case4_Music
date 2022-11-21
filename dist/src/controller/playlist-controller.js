@@ -1,17 +1,33 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt_1 = __importDefault(require("bcrypt"));
 const playlist_1 = require("../model/playlist");
 class PlaylistController {
     constructor() {
+        this.getAll = async (req, res) => {
+            let allPlaylist = await playlist_1.Playlist.find();
+            return res.status(200).json(allPlaylist);
+        };
         this.createPlaylist = async (req, res) => {
-            let playlist = req.body;
-            playlist.password = await bcrypt_1.default.hash(playlist.password, 10);
-            playlist = await playlist_1.Playlist.create(playlist);
-            return res.status(201).json(playlist);
+            await playlist_1.Playlist.insertMany(req.body);
+            return res.status(201).json({
+                message: "add success"
+            });
+        };
+        this.editPlaylist = async (req, res) => {
+            await playlist_1.Playlist.updateOne({ _id: req.params.id }, req.body);
+            return res.status(200).json({
+                message: "edit success"
+            });
+        };
+        this.deletePlaylist = async (req, res) => {
+            await playlist_1.Playlist.deleteOne({ _id: req.params.id });
+            return res.status(200).json({
+                message: "delete success"
+            });
+        };
+        this.findPlaylist = async (req, res) => {
+            let playlist = await playlist_1.Playlist.findById(req.params.id);
+            res.status(200).json(playlist);
         };
     }
 }

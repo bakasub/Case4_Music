@@ -23,10 +23,16 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-export interface IPlaylist {
-    username?: string;
-    playlistName?: string;
-    createDate?: string;
+import { IUser } from "./user";
+export interface ISong {
+    user?: IUser;
+    name: string;
+    artist?: string;
+    image?: string;
+    file?: string;
+    date?: string;
+    description?: string;
+    composer?: string;
 }
-declare const Playlist: import("mongoose").Model<IPlaylist, {}, {}, {}, any>;
-export { Playlist };
+declare const Song: import("mongoose").Model<ISong, {}, {}, {}, any>;
+export { Song };

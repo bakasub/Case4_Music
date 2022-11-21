@@ -1,5 +1,5 @@
 import {Schema, model} from 'mongoose'
-interface IPlaylist {
+export interface IPlaylist {
     username ?: string;
     playlistName ?: string;
     createDate ?: string;
@@ -11,5 +11,5 @@ const playlistSchema = new Schema<IPlaylist>({
     createDate: String,
 });
 
-const Playlist = model<IPlaylist>('Playlist', playlistSchema);
-export {Playlist};
+const Playlist = model<IPlaylist>("playlist", playlistSchema);
+export {Playlist}
