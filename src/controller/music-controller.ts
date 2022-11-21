@@ -3,7 +3,7 @@ import {Music} from "../model/music";
 
 class MusicController {
     getAll = async (req: Request,res: Response)=> {
-        let products = await Music.find();
+        let products = await Music.find().populate('category', 'name');
         return res.status(200).json(products)
     }
     save = async (req: Request,res: Response)=>{
@@ -18,7 +18,7 @@ class MusicController {
 
     }
      findIdEdit =  async (req: Request,res: Response)=> {
-         let id = req.params.id
+          let id = req.params.id
          let product = await Music.findById({id});
          return res.status(200).json(product);
      }
