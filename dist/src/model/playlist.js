@@ -3,7 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Playlist = void 0;
 const mongoose_1 = require("mongoose");
 const playlistSchema = new mongoose_1.Schema({
-    username: String,
+    user: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: "user"
+    },
     playlistName: String,
     createDate: String,
 });

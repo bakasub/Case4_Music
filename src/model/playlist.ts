@@ -1,12 +1,18 @@
 import {Schema, model} from 'mongoose'
+import {IUser} from "./user";
+
+
 export interface IPlaylist {
-    username ?: string;
+    user ?: IUser;
     playlistName ?: string;
     createDate ?: string;
 }
 
 const playlistSchema = new Schema<IPlaylist>({
-    username: String,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "user"
+    },
     playlistName: String,
     createDate: String,
 });

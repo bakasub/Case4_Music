@@ -4,7 +4,7 @@ const playlist_1 = require("../model/playlist");
 class PlaylistController {
     constructor() {
         this.getAll = async (req, res) => {
-            let allPlaylist = await playlist_1.Playlist.find();
+            let allPlaylist = await playlist_1.Playlist.find().populate("user");
             return res.status(200).json(allPlaylist);
         };
         this.createPlaylist = async (req, res) => {
@@ -28,6 +28,12 @@ class PlaylistController {
         this.findPlaylist = async (req, res) => {
             let playlist = await playlist_1.Playlist.findById(req.params.id);
             res.status(200).json(playlist);
+        };
+        this.filterByUser = async (req, res) => {
+            let userPlaylist = await playlist_1.Playlist.find({
+                userID: req.params.idUser
+            });
+            return res.status(200).json(userPlaylist);
         };
     }
 }

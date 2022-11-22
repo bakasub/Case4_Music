@@ -9,7 +9,9 @@ const playlist_controller_1 = __importDefault(require("../controller/playlist-co
 const playlistSongs_controller_1 = __importDefault(require("../controller/playlistSongs-controller"));
 exports.playlistRouter = (0, express_1.Router)();
 exports.playlistRouter.get('/song', playlistSongs_controller_1.default.findAll);
-exports.playlistRouter.post('/song', playlistSongs_controller_1.default.addSong);
+exports.playlistRouter.post('/song', playlistSongs_controller_1.default.addPLSong);
+exports.playlistRouter.delete('/song/:id', playlistSongs_controller_1.default.deletePLSong);
+exports.playlistRouter.get('/user/:idUser', playlist_controller_1.default.filterByUser);
 exports.playlistRouter.get('/', playlist_controller_1.default.getAll);
 exports.playlistRouter.post('/', playlist_controller_1.default.createPlaylist);
 exports.playlistRouter.put('/:id', playlist_controller_1.default.editPlaylist);

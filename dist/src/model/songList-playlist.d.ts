@@ -25,9 +25,7 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { IPlaylist } from "./playlist";
 import { ISong } from "./song";
-import { IUser } from "./user";
 interface IPlaylistSongs {
-    user?: IUser;
     playlist?: IPlaylist;
     song?: ISong;
 }
