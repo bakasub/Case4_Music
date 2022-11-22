@@ -26,9 +26,9 @@ class SongController {
                 message: "delete success"
             });
         };
-        this.findByNameSong = async (req, res) => {
-            let song = await song_1.Song.findById(req.params.id);
-            res.status(200).json(song);
+        this.findByName = async (req, res) => {
+            let findSong = await song_1.Song.find({ 'name': new RegExp(req.body.name, 'i') });
+            return res.status(201).json(findSong);
         };
     }
 }

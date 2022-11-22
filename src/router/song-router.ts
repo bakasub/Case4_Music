@@ -6,4 +6,4 @@ songRouter.get('/song',songController.getAll);
 songRouter.post('/song', songController.addSong);
 songRouter.put('/song/:id', songController.editSong);
 songRouter.delete('/song/:id', songController.deleteSong);
-songRouter.get('/song/:id',songController.findByNameSong);
+songRouter.get('/song/:id',songController.findByName);
