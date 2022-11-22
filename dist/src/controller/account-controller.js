@@ -3,15 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_1 = require("../model/user");
+exports.AccountController = void 0;
+const account_1 = require("../model/account");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const auth_1 = require("../middleware/auth");
-class UserController {
+class AccountController {
     constructor() {
         this.register = async (req, res) => {
             let user = req.body;
-            let checkUsername = await user_1.User.findOne({
+            let checkUsername = await account_1.Account.findOne({
                 username: user.username,
             });
             if (checkUsername) {
@@ -41,13 +42,13 @@ class UserController {
             }
             else {
                 user.password = await bcrypt_1.default.hash(user.password, 10);
-                user = await user_1.User.create(user);
+                user = await account_1.Account.create(user);
                 return res.status(201).json(user);
             }
         };
         this.login = async (req, res) => {
             let user = req.body;
-            let userFind = await user_1.User.findOne({
+            let userFind = await account_1.Account.findOne({
                 username: user.username
             });
             if (!userFind) {
@@ -76,22 +77,9 @@ class UserController {
                 }
             }
         };
-        this.changePassword = async (req, res) => {
-            if (req.body.password.length < 6 || req.body.password.length > 8) {
-                return res.status(200).json({
-                    message: 'Invalid password'
-                });
-            }
-            else {
-                let newPassword = req.body;
-                newPassword.password = await bcrypt_1.default.hash(newPassword.password, 10);
-                await user_1.User.updateOne({ _id: req.params.id }, newPassword);
-                return res.status(200).json({
-                    message: 'Change password success'
-                });
-            }
-        };
     }
 }
-exports.default = new UserController();
-//# sourceMappingURL=user-controller.js.map
+exports.AccountController = AccountController;
+exports.default = new AccountController();
+r();
+//# sourceMappingURL=account-controller.js.map

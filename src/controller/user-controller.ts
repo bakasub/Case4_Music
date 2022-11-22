@@ -27,7 +27,7 @@ class UserController {
             return res.status(200).json({
                 message: 'Invalid password!!'
             })
-        } else if (user.phoneNumber.length <=9) {
+        } else if (user.phoneNumber.length <= 9) {
             return res.status(200).json({
                 message: 'Invalid phone number!!'
             })
@@ -68,7 +68,20 @@ class UserController {
             }
         }
     }
+    changePassword = async (req: Request, res: Response) => {
+        if (req.body.password.length < 6 || req.body.password.length > 8) {
+            return res.status(200).json({
+                message: 'Invalid password'
+            })
+        } else {
+            let newPassword = req.body
+            newPassword.password = await bcrypt.hash(newPassword.password, 10)
+            await User.updateOne({_id: req.params.id}, newPassword)
+            return res.status(200).json({
+                message: 'Change password success'
+            })
+        }
+    }
 }
 
 export default new UserController();
-// () && ()

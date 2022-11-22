@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-declare class UserController {
+export declare class AccountController {
     register: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     login: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
-    changePassword: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
 }
-declare const _default: UserController;
+declare const _default: AccountController;
 export default _default;
