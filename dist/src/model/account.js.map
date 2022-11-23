@@ -1,0 +1,1 @@
+{"version":3,"file":"account.js","sourceRoot":"","sources":["../../../src/model/account.ts"],"names":[],"mappings":";;;AAAA,uCAAuC;AAQvC,MAAM,UAAU,GAAG,IAAI,iBAAM,CAAQ;IACjC,QAAQ,EAAE,MAAM;IAChB,QAAQ,EAAE,MAAM;IAChB,WAAW,EAAC,MAAM;CACrB,CAAC,CAAC;AACH,MAAM,OAAO,GAAG,IAAA,gBAAK,EAAQ,SAAS,EAAE,UAAU,CAAC,CAAC;AAC5C,0BAAO"}
