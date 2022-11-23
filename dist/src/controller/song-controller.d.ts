@@ -5,6 +5,7 @@ declare class SongController {
     editSong: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     deleteSong: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     findByName: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
+    findByIdSong: (req: Request, res: Response) => Promise<void>;
 }
 declare const _default: SongController;
 export default _default;

@@ -28,10 +28,20 @@ class SongController{
         })
     }
     findByName = async (req: Request , res: Response) => {
-        let findSong = await Song.find({'name' : new RegExp(req.body.name, 'i')});
+        let findSong = await Song.find({
+            $or: [
+                {name: new RegExp(req.body.keyWord, 'i')},
+                {artist: new RegExp(req.body.keyWord, 'i')}
+            ]
+        })
         return res.status(201).json(
             findSong
         )
+    }
+    findByIdSong= async (req:Request,res:Response)=> {
+        let p = await Song.findById(req.params.id);
+        res.status(200).json(p)
+
     }
 }
 export default new SongController();

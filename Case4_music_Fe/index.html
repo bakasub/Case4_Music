@@ -93,6 +93,9 @@
                 <div class="sm-left">
                     <strong>Phone</strong>:&nbsp; <a href="#">555 555 555</a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <strong>E-mail</strong>:&nbsp; <a href="#">music.site@melodi.com</a>
+                        <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" onclick="findSong()">Search</button>
+
                 </div>
                 <!-- secondary menu right link area -->
                 <div class="sm-right">
@@ -417,10 +420,6 @@
                 <input type="text" class="form-control" id="artist" name="artist" placeholder="Enter artist">
             </div>
             <div class="form-group">
-                <label>image</label>
-                <input id="fileButton" type="file" class="form-control">
-            </div>
-            <div class="form-group">
                 <label>File</label>
                 <progress value="0" max="100" id="uploader">0%</progress>
                 <input type="file" value="upload" accept="" id="fileAudio">
@@ -548,46 +547,9 @@
     let image = '';
     let fbBucketName = 'images';
     let uploader = document.getElementById('uploader');
-    let fileButton = document.getElementById('fileButton');
     let fileAudio = document.getElementById('fileAudio');
 
-    fileButton.addEventListener('change', function (e) {
-        console.log('file upload event', e);
-        let file = e.target.files[0];
-        let storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
-        let uploadTask = storageRef.put(file);
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-            function (snapshot) {
-                let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                uploader.value = progress;
 
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED: // or 'paused'
-
-                        break;
-                    case firebase.storage.TaskState.RUNNING: // or 'running'
-
-                        break;
-                }
-            }, function (error) {
-                switch (error.code) {
-                    case 'storage/unauthorized':
-                        break;
-
-                    case 'storage/canceled':
-                        break;
-
-                    case 'storage/unknown':
-                        break;
-                }
-            }, function () {
-                let downloadURL = uploadTask.snapshot.downloadURL;
-                //đây là link file ảnh
-                localStorage.setItem('image', downloadURL);
-            });
-
-
-    });
     fileAudio.addEventListener('change', function (e) {
         let file = e.target.files[0];
         let storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
@@ -653,9 +615,8 @@
     function create() {
         let name = $('#name').val();
         let artist = $('#artist').val();
-        let image = localStorage.getItem('image');
         let file = localStorage.getItem('audio');
-        let date = $('#date').val();
+        let date = new Date().toLocaleDateString().padStart(10, '0')
         let description = $('#description').val();
         let composer = $('#composer').val();
 
@@ -677,10 +638,20 @@
             },
             data: JSON.stringify(song),
             success: () => {
+                resetFormCreate()
                 showAll()
             }
         })
     };
+
+    function resetFormCreate() {
+        $('#name').val('');
+        $('#artist').val('');
+        $('#fileAudio').val('');
+        $('#date').val('');
+        $('#description').val('');
+        $('#composer').val('');
+    }
 
     function showFormDelete(id) {
 
@@ -706,8 +677,6 @@
             success: (song) => {
                 $('#nameEdit').val(song.name);
                 $('#artistEdit').val(song.artist);
-                $('#imageEdit').val(song.image);
-                $('#fileEdit').val(song.file);
                 $('#dateEdit').val(song.date);
                 $('#descriptionEdit').val(song.description);
                 editId = id;
@@ -719,8 +688,6 @@
         let id = editId;
         let name = $('#nameEdit').val();
         let artist = $('#artistEdit').val();
-        let image = $('#imageEdit').val();
-        let file = $('#fileEdit').val();
         let date = $('#dateEdit').val();
         let description = $('#descriptionEdit').val();
         let song = {
@@ -743,6 +710,43 @@
             }
         })
     }
+
+    function findSong(){
+        let search = $('#search').val();
+        let keySearch = {
+            keyWord:search
+        }
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:8080/song/search",
+            headers: {
+                'Content-type': 'application/json',
+            },
+            data: JSON.stringify(keySearch),
+            success: (songs) => {
+                console.log(songs)
+                let htmlSongs = ``;
+
+                for (let i = 0; i < songs.length; i++) {
+                    htmlSongs += `<li class="playlist-number">
+                                    <div class="song-info">
+                                    <h4>${songs[i].name}</h4>
+                                    <p><strong>Composer</strong>: ${songs[i].composer}  &nbsp;|&nbsp; <strong>Artist</strong>: ${songs[i].artist}</p>
+                                    </div>
+                                   <audio controls>
+  <source src="${songs[i].file}" type="audio/ogg">
+  <source src="" type="audio/ogg">
+</audio>
+                                     <button onclick="showFormDelete('${songs[i]._id}')">Delete</button>
+                                     <button  onclick="showFormEdit('${songs[i]._id}')" data-toggle="modal" data-target="#exampleModalEdit">Edit</button>
+                                    <div class="clearfix"></div>
+                                    </li>`
+                }
+                $('#listSong').html(htmlSongs);
+            }
+        })
+    };
+
 
 </script>
 </body>

@@ -11,5 +11,6 @@ exports.songRouter.get('/song', song_controller_1.default.getAll);
 exports.songRouter.post('/song', song_controller_1.default.addSong);
 exports.songRouter.put('/song/:id', song_controller_1.default.editSong);
 exports.songRouter.delete('/song/:id', song_controller_1.default.deleteSong);
-exports.songRouter.get('/song/:id', song_controller_1.default.findByName);
+exports.songRouter.get('/song/:id', song_controller_1.default.findByIdSong);
+exports.songRouter.post('/song/search', song_controller_1.default.findByName);
 //# sourceMappingURL=song-router.js.map

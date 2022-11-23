@@ -27,8 +27,17 @@ class SongController {
             });
         };
         this.findByName = async (req, res) => {
-            let findSong = await song_1.Song.find({ 'name': new RegExp(req.body.name, 'i') });
+            let findSong = await song_1.Song.find({
+                $or: [
+                    { name: new RegExp(req.body.keyWord, 'i') },
+                    { artist: new RegExp(req.body.keyWord, 'i') }
+                ]
+            });
             return res.status(201).json(findSong);
+        };
+        this.findByIdSong = async (req, res) => {
+            let p = await song_1.Song.findById(req.params.id);
+            res.status(200).json(p);
         };
     }
 }
