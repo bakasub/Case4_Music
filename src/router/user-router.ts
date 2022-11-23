@@ -5,5 +5,5 @@ import {auth} from "../middleware/auth";
 export const userRouter = Router();
 userRouter.post('/register', UserController.register);
 userRouter.post('/login', UserController.login);
-userRouter.get('/user', UserController.findAll);
+userRouter.use(auth)
 userRouter.put('/changePassword/:id',UserController.changePassword)

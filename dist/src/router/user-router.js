@@ -6,9 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.userRouter = void 0;
 const express_1 = require("express");
 const user_controller_1 = __importDefault(require("../controller/user-controller"));
+const auth_1 = require("../middleware/auth");
 exports.userRouter = (0, express_1.Router)();
 exports.userRouter.post('/register', user_controller_1.default.register);
 exports.userRouter.post('/login', user_controller_1.default.login);
-exports.userRouter.get('/user', user_controller_1.default.findAll);
+exports.userRouter.use(auth_1.auth);
 exports.userRouter.put('/changePassword/:id', user_controller_1.default.changePassword);
 //# sourceMappingURL=user-router.js.map

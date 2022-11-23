@@ -71,7 +71,8 @@ class UserController {
                         expiresIn: 36000
                     });
                     return res.status(200).json({
-                        token: token
+                        token: token,
+                        id: userFind._id
                     });
                 }
             }
@@ -103,12 +104,6 @@ class UserController {
                     });
                 }
             }
-        };
-        this.findAll = async (req, res) => {
-            let user = await user_1.User.find();
-            return res.status(200).json({
-                user
-            });
         };
     }
 }

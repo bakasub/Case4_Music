@@ -63,7 +63,8 @@ class UserController {
                     expiresIn: 36000
                 });
                 return res.status(200).json({
-                    token: token
+                    token: token,
+                    id: userFind._id
                 })
             }
         }
@@ -87,7 +88,7 @@ class UserController {
                 })
             } else {
                 let newPassword = req.body.newPassword;
-                newPassword =await bcrypt.hash(newPassword, 10);
+                newPassword = await bcrypt.hash(newPassword, 10);
                 await User.updateOne({_id: idUser}, {$set: {password: newPassword}})
                 return res.status(200).json({
                     message: 'Change password success'
@@ -96,12 +97,6 @@ class UserController {
         }
     }
 
-    findAll = async (req: Request, res: Response) => {
-        let user = await User.find();
-        return res.status(200).json({
-            user
-        })
-    }
 }
 
 export default new UserController();
