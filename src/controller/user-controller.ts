@@ -32,7 +32,7 @@ class UserController {
             return res.status(200).json({
                 message: 'Invalid password!!'
             })
-        } else if (user.phoneNumber.length <=9) {
+        } else if (user.phoneNumber.length <= 9) {
             return res.status(200).json({
                 message: 'Invalid phone number!!'
             })
@@ -68,7 +68,8 @@ class UserController {
                     expiresIn: 36000
                 });
                 return res.status(200).json({
-                    token: token
+                    token: token,
+                    id: userFind._id
                 })
             }
         }

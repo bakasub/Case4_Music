@@ -3,12 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const songList_playlist_1 = require("../model/songList-playlist");
 class PlaylistSongsController {
     constructor() {
-        this.findAll = async (req, res) => {
+        this.getAll = async (req, res) => {
             let songList = await songList_playlist_1.PlaylistSongs.find().populate("playlist")
                 .populate("song");
             return res.status(200).json(songList);
         };
-        this.addPLSong = async (req, res) => {
+        this.addSongToPL = async (req, res) => {
             await songList_playlist_1.PlaylistSongs.insertMany(req.body);
             return res.status(200).json({
                 message: "add success"
@@ -19,6 +19,12 @@ class PlaylistSongsController {
             return res.status(200).json({
                 message: "delete success"
             });
+        };
+        this.getSongsFromAPL = async (req, res) => {
+            let songList = await songList_playlist_1.PlaylistSongs.find({
+                playlist: req.params.id
+            });
+            return res.status(200).json(songList);
         };
     }
 }

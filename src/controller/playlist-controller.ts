@@ -3,6 +3,8 @@ import {Playlist} from "../model/playlist";
 
 class PlaylistController {
     getAll = async (req:Request,res:Response)=>{
+        // let token = await this.getToken(req)
+        // console.log(token)
         let allPlaylist = await Playlist.find().populate("user")
         return res.status(200).json(allPlaylist);
     }
@@ -35,9 +37,15 @@ class PlaylistController {
 
     filterByUser = async (req: Request, res: Response) => {
         let userPlaylist = await Playlist.find({
-            userID: req.params.idUser
+            user: req.params.idUser
         })
         return res.status(200).json(userPlaylist)
     }
+
+    getToken = async (req : any) =>{
+        return await req.decode
+    }
+
+
 }
 export default new PlaylistController();

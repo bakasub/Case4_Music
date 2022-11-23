@@ -31,9 +31,12 @@ class PlaylistController {
         };
         this.filterByUser = async (req, res) => {
             let userPlaylist = await playlist_1.Playlist.find({
-                userID: req.params.idUser
+                user: req.params.idUser
             });
             return res.status(200).json(userPlaylist);
+        };
+        this.getToken = async (req) => {
+            return await req.decode;
         };
     }
 }
