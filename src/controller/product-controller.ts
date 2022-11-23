@@ -10,7 +10,6 @@ class ProductController {
     }
     show = async (req: Request, res: Response) => {
         let product = await Product.find();
-        console.log(product)
         return res.status(200).json(product)
     }
 }

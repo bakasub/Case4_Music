@@ -77,19 +77,38 @@ class UserController {
             }
         };
         this.changePassword = async (req, res) => {
-            if (req.body.password.length < 6 || req.body.password.length > 8) {
+            let idUser = req.params.id;
+            const userFind = await user_1.User.findOne({
+                _id: idUser
+            });
+            if (!userFind) {
                 return res.status(200).json({
-                    message: 'Invalid password'
+                    message: 'Id user is not exist'
                 });
             }
             else {
-                let newPassword = req.body;
-                newPassword.password = await bcrypt_1.default.hash(newPassword.password, 10);
-                await user_1.User.updateOne({ _id: req.params.id }, newPassword);
-                return res.status(200).json({
-                    message: 'Change password success'
-                });
+                let oldPassword = req.body.oldPassword;
+                let compare = await bcrypt_1.default.compare(oldPassword, userFind.password);
+                if (!compare) {
+                    return res.status(200).json({
+                        message: 'Password not exist'
+                    });
+                }
+                else {
+                    let newPassword = req.body.newPassword;
+                    newPassword = await bcrypt_1.default.hash(newPassword, 10);
+                    await user_1.User.updateOne({ _id: idUser }, { $set: { password: newPassword } });
+                    return res.status(200).json({
+                        message: 'Change password success'
+                    });
+                }
             }
+        };
+        this.findAll = async (req, res) => {
+            let user = await user_1.User.find();
+            return res.status(200).json({
+                user
+            });
         };
     }
 }

@@ -11,7 +11,6 @@ class ProductController {
         };
         this.show = async (req, res) => {
             let product = await product_1.Product.find();
-            console.log(product);
             return res.status(200).json(product);
         };
     }
