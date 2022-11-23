@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 	<meta charset="utf-8">
 	<title>Melodi</title>
@@ -12,6 +12,7 @@
 
 	<!-- Styles -->
 	<!-- Bootstrap CSS -->
+
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<!-- Animate CSS -->
 	<link href="css/animate.min.css" rel="stylesheet">
@@ -22,9 +23,11 @@
 	<!-- Custom CSS -->
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/style-color.css" rel="stylesheet">
-
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="img/logo/favicon.ico">
+
+	<link rel="stylesheet" href="lib/sweetalert2.css">
+
 </head>
 
 <body>
@@ -360,146 +363,34 @@
 	<!--/ promo end -->
 
 	<!-- featured abbum -->
+
 	<div class="featured pad" id="featuredalbum">
+
 		<div class="container">
 			<!-- default heading -->
 			<div class="default-heading">
 				<!-- heading -->
 				<h2>Featured Album</h2>
 			</div>
+			<a href="create.html"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				Create/Edit/Delete
+			</button></a>
 			<!-- featured album elements -->
 			<div class="featured-element">
 				<div class="row">
-					<div class="col-md-4 col-sm-6">
-						<!-- featured item -->
-						<div class="featured-item ">
-							<!-- image container -->
-							<div class="figure">
-								<!-- image -->
-								<img class="img-responsive" src="img/featured/1.jpg" alt="" />
-								<!-- paragraph -->
-								<p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
-							</div>
-							<!-- featured information -->
-							<div class="featured-item-info">
-								<!-- featured title -->
-								<h4>Power Pop</h4>
-								<!-- horizontal line -->
-								<hr />
-								<!-- some responce from social medial or web likes -->
-								<p>1024+ <span class="label label-theme">Like</span> &nbsp;&nbsp; 825+ <span class="label label-theme">Love</span></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<!-- featured item -->
-						<div class="featured-item ">
-							<!-- image container -->
-							<div class="figure">
-								<!-- image -->
-								<img class="img-responsive" src="img/featured/2.jpg" alt="" />
-								<!-- paragraph -->
-								<p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
-							</div>
-							<!-- featured information -->
-							<div class="featured-item-info">
-								<!-- featured title -->
-								<h4>Bad Brains</h4>
-								<!-- horizontal line -->
-								<hr />
-								<!-- some responce from social medial or web likes -->
-								<p>1024+ <span class="label label-theme">Like</span> &nbsp;&nbsp; 825+ <span class="label label-theme">Love</span></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<!-- featured item -->
-						<div class="featured-item ">
-							<!-- image container -->
-							<div class="figure">
-								<!-- image -->
-								<img class="img-responsive" src="img/featured/3.jpg" alt="" />
-								<!-- paragraph -->
-								<p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
-							</div>
-							<!-- featured information -->
-							<div class="featured-item-info">
-								<!-- featured title -->
-								<h4>The Mars Volta</h4>
-								<!-- horizontal line -->
-								<hr />
-								<!-- some responce from social medial or web likes -->
-								<p>1024+ <span class="label label-theme">Like</span> &nbsp;&nbsp; 825+ <span class="label label-theme">Love</span></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<!-- featured item -->
-						<div class="featured-item ">
-							<!-- image container -->
-							<div class="figure">
-								<!-- image -->
-								<img class="img-responsive" src="img/featured/4.jpg" alt="" />
-								<!-- paragraph -->
-								<p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
-							</div>
-							<!-- featured information -->
-							<div class="featured-item-info">
-								<!-- featured title -->
-								<h4>Dirty Dancing</h4>
-								<!-- horizontal line -->
-								<hr />
-								<!-- some responce from social medial or web likes -->
-								<p>1024+ <span class="label label-theme">Like</span> &nbsp;&nbsp; 825+ <span class="label label-theme">Love</span></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<!-- featured item -->
-						<div class="featured-item ">
-							<!-- image container -->
-							<div class="figure">
-								<!-- image -->
-								<img class="img-responsive" src="img/featured/5.jpg" alt="" />
-								<!-- paragraph -->
-								<p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
-							</div>
-							<!-- featured information -->
-							<div class="featured-item-info">
-								<!-- featured title -->
-								<h4>Hotel California</h4>
-								<!-- horizontal line -->
-								<hr />
-								<!-- some responce from social medial or web likes -->
-								<p>1024+ <span class="label label-theme">Like</span> &nbsp;&nbsp; 825+ <span class="label label-theme">Love</span></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<!-- featured item -->
-						<div class="featured-item ">
-							<!-- image container -->
-							<div class="figure">
-								<!-- image -->
-								<img class="img-responsive" src="img/featured/6.jpg" alt="" />
-								<!-- paragraph -->
-								<p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
-							</div>
-							<!-- featured information -->
-							<div class="featured-item-info">
-								<!-- featured title -->
-								<h4>Punk Compilation</h4>
-								<!-- horizontal line -->
-								<hr />
-								<!-- some responce from social medial or web likes -->
-								<p>1024+ <span class="label label-theme">Like</span> &nbsp;&nbsp; 825+ <span class="label label-theme">Love</span></p>
-							</div>
-						</div>
+						<div id="musics">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+</div>
+<div>
+
+
+
+
 	<!-- features end -->
 
 	<!-- call to action -->
@@ -1097,8 +988,8 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
-								<label for="name">Name</label>
-								<input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+								<label for="named">Name</label>
+								<input type="text" class="form-control" id="named" name="name" placeholder="Enter name">
 							</div>
 							<div class="form-group">
 								<label for="email">Email</label>
@@ -1165,5 +1056,105 @@
 <script src="js/html5shiv.js"></script>
 <!-- Custom JS -->
 <script src="js/custom.js"></script>
+<script src="js/index.js"></script>
+
+
+<script src="lib/sweetalert2.all.js"></script>
+<script src="lib/sweetalert2.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+<script>
+
+	const firebaseConfig = {
+		apiKey: "AIzaSyCtuz9NQaAm0UyZT2te9D2Xm4GCwFEhO50",
+		authDomain: "songs-c6273.firebaseapp.com",
+		projectId: "songs-c6273",
+		storageBucket: "songs-c6273.appspot.com",
+		messagingSenderId: "433424473799",
+		appId: "1:433424473799:web:544e44170b36c815bfe8e2",
+		measurementId: "G-T8B2LSZ5SV"
+	};
+	firebase.initializeApp(firebaseConfig);
+</script>
+
+<script type="text/javascript">
+	let image = '';
+	let fbBucketName = 'images';
+	let uploader = document.getElementById('uploader');
+	let fileButton1 = document.getElementById('fileButton1');
+	let fileButton2 = document.getElementById('fileButton2')
+
+	fileButton1.addEventListener('change', function (e) {
+		console.log('file upload event', e);
+		let file = e.target.files[0];
+		let storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
+		let uploadTask = storageRef.put(file);
+		uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+				function (snapshot) {
+					let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					uploader.value = progress;
+					console.log('Upload is ' + progress + '% done');
+					switch (snapshot.state) {
+						case firebase.storage.TaskState.PAUSED: // or 'paused'
+							console.log('Upload is paused');
+							break;
+						case firebase.storage.TaskState.RUNNING: // or 'running'
+							console.log('Upload is running');
+							break;
+					}
+				}, function (error) {
+					switch (error.code) {
+						case 'storage/unauthorized':
+							break;
+
+						case 'storage/canceled':
+							break;
+
+						case 'storage/unknown':
+							break;
+					}
+				}, function () {
+					let downloadURL = uploadTask.snapshot.downloadURL;
+					localStorage.setItem('image1',downloadURL);
+				});
+
+	});
+	fileButton2.addEventListener('change', function (e) {
+		console.log('file upload event', e);
+		let file = e.target.files[0];
+		let storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
+		let uploadTask = storageRef.put(file);
+		uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+				function (snapshot) {
+					let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					uploader.value = progress;
+					console.log('Upload is ' + progress + '% done');
+					switch (snapshot.state) {
+						case firebase.storage.TaskState.PAUSED: // or 'paused'
+							console.log('Upload is paused');
+							break;
+						case firebase.storage.TaskState.RUNNING: // or 'running'
+							console.log('Upload is running');
+							break;
+					}
+				}, function (error) {
+					switch (error.code) {
+						case 'storage/unauthorized':
+							break;
+
+						case 'storage/canceled':
+							break;
+
+						case 'storage/unknown':
+							break;
+					}
+				}, function () {
+					let downloadURL = uploadTask.snapshot.downloadURL;
+					localStorage.setItem('image1',downloadURL);
+				});
+
+	});
+</script>
+
+
 </body>
 </html>
