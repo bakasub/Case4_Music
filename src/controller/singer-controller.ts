@@ -18,8 +18,8 @@ class SingerController {
 
     }
      findIdEdit =  async (req: Request,res: Response)=> {
-          let id = req.params.id
-         let product = await Singer.findById({id});
+        let id = req.params.id
+         let product = await Singer.find({_id:id});
          return res.status(200).json(product);
      }
     update = async (req: Request,res: Response)=>{

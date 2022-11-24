@@ -13,7 +13,7 @@
 </head>
 <body>
 <div>
-   <a href="index.html"><button type="button" class="btn btn-success">
+    <a href="index.html"><button type="button" class="btn btn-success">
         Back to Home page
     </button></a>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -29,15 +29,15 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Name</label>
-                        <input type="text" id="name" class="form-control" aria-describedby="emailHelp">
+                        <input type="text" id="name" class="form-control" aria-describedby="emailHelp" >
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Band</label>
-                        <input type="text" class="form-control" id="band">
+                        <input type="text" class="form-control" id="band" >
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <input type="text" class="form-control" id="description">
+                        <input type="text" class="form-control" id="description" >
                     </div>
                     <div class="mb-3">
                         <label>image</label>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Band</label>
-                        <input type="text" class="form-control" id="bandUpdate">
+                        <input type="text" class="form-control" id="bandUpdate" >
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Description</label>
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="update()" data-bs-dismiss="modal">Save
+                    <button type="button" class="btn btn-primary" onclick="edit()" data-bs-dismiss="modal">Save
                     </button>
                 </div>
             </div>
@@ -232,6 +232,7 @@
             success: (singers) => {
                 let htmlMusics = ``;
                 for (let i = 0; i < singers.length; i++) {
+
                     htmlMusics += `<tr>
                                 <td>${i + 1}</td>
                                 <td>${singers[i].name}</td>
@@ -244,7 +245,7 @@
                             </tr>`
 
                 }
-                console.log(htmlMusics)
+
                 $('#musics').html(htmlMusics);
             }
         })
@@ -295,10 +296,6 @@
         })
     }
 
-    let idEdit
-    function getIdEdit(id) {
-        idEdit = id
-    }
 
     function resetFormCreate() {
         $('#name').val('');
@@ -372,9 +369,27 @@
             }
         })
     }
+    let editId;
 
-    function update() {
-        let id = idEdit
+    function getIdEdit(id) {
+
+        $.ajax({
+            type: 'GET',
+            url: `http://localhost:8080/musics/${id}`,
+            success: (singers) => {
+                console.log(singers)
+                $('#nameUpdate').val(singers[0].name);
+                $('#bandUpdate').val(singers[0].band);
+                $('#descriptionUpdate').val(singers[0].description);
+                localStorage.getItem('image1');
+                $('#idSongUpdate').val()
+                editId = id;
+            }
+        })
+    }
+
+    function edit() {
+        let id = editId;
         let name = $('#nameUpdate').val();
         let band = $('#bandUpdate').val();
         let description = $('#descriptionUpdate').val();
@@ -388,20 +403,20 @@
             chant : {_id:chant}
         }
         console.log(music)
-
         $.ajax({
             type: 'PUT',
-            url: 'http://localhost:8080/musics/' + id,
+            url: `http://localhost:8080/musics/${id}`,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-type': 'application/json',
             },
             data: JSON.stringify(music),
             success: () => {
-                showAll()
-
+                showAll();
             }
         })
     }
+
+
 
 </script>
 </body>
