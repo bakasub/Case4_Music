@@ -29,6 +29,15 @@ class SongController {
             let song = await song_1.Song.findById(req.params.id);
             res.status(200).json(song);
         };
+        this.findByName = async (req, res) => {
+            let findSong = await song_1.Song.find({
+                $or: [
+                    { name: new RegExp(req.body.keyWord, 'i') },
+                    { artist: new RegExp(req.body.keyWord, 'i') }
+                ]
+            });
+            return res.status(201).json(findSong);
+        };
     }
 }
 exports.default = new SongController();

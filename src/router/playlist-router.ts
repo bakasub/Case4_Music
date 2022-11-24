@@ -9,6 +9,8 @@ playlistRouter.delete('/song/:id',playlistSongsController.deletePLSong);
 playlistRouter.get('/user/:idUser',playlistController.filterByUser);
 playlistRouter.get('/',playlistController.getAll);
 playlistRouter.post('/', playlistController.createPlaylist);
+playlistRouter.get('/:id',playlistController.findPlaylist)
 playlistRouter.put('/:id',playlistController.editPlaylist);
 playlistRouter.delete('/:id',playlistController.deletePlaylist);
 playlistRouter.get('/detail/:id',playlistSongsController.getSongsFromAPL);
+

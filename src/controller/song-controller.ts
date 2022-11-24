@@ -35,6 +35,18 @@ class SongController {
         res.status(200).json(song)
 
     }
+
+    findByName = async (req: Request , res: Response) => {
+        let findSong = await Song.find({
+            $or: [
+                {name: new RegExp(req.body.keyWord, 'i')},
+                {artist: new RegExp(req.body.keyWord, 'i')}
+            ]
+        })
+        return res.status(201).json(
+            findSong
+        )
+    }
 }
 
 

@@ -14,6 +14,7 @@ exports.playlistRouter.delete('/song/:id', playlistSongs_controller_1.default.de
 exports.playlistRouter.get('/user/:idUser', playlist_controller_1.default.filterByUser);
 exports.playlistRouter.get('/', playlist_controller_1.default.getAll);
 exports.playlistRouter.post('/', playlist_controller_1.default.createPlaylist);
+exports.playlistRouter.get('/:id', playlist_controller_1.default.findPlaylist);
 exports.playlistRouter.put('/:id', playlist_controller_1.default.editPlaylist);
 exports.playlistRouter.delete('/:id', playlist_controller_1.default.deletePlaylist);
 exports.playlistRouter.get('/detail/:id', playlistSongs_controller_1.default.getSongsFromAPL);

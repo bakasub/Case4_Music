@@ -23,7 +23,7 @@ class PlaylistSongsController {
         this.getSongsFromAPL = async (req, res) => {
             let songList = await songList_playlist_1.PlaylistSongs.find({
                 playlist: req.params.id
-            });
+            }).populate("song");
             return res.status(200).json(songList);
         };
     }

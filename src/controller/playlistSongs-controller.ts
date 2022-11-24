@@ -25,7 +25,7 @@ class PlaylistSongsController {
     getSongsFromAPL = async (req: Request,res: Response) => {
         let songList = await PlaylistSongs.find({
             playlist: req.params.id
-        })
+        }).populate("song")
         return res.status(200).json(songList)
     }
 }

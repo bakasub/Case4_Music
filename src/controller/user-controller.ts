@@ -75,5 +75,32 @@ class UserController {
         }
     }
 
+    changePassword = async (req: Request, res: Response) => {
+        let idUser = req.params.id
+        const userFind = await User.findOne({
+            _id: idUser
+        })
+        if (!userFind) {
+            return res.status(200).json({
+                message: 'Id user is not exist'
+            })
+        } else {
+            let oldPassword = req.body.oldPassword;
+            let compare = await bcrypt.compare(oldPassword, userFind.password);
+            if (!compare) {
+                return res.status(200).json({
+                    message: 'Password not exist'
+                })
+            } else {
+                let newPassword = req.body.newPassword;
+                newPassword = await bcrypt.hash(newPassword, 10);
+                await User.updateOne({_id: idUser}, {$set: {password: newPassword}})
+                return res.status(200).json({
+                    message: 'Change password success'
+                })
+            }
+        }
+    }
+
 }
 export default new UserController();

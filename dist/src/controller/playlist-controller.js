@@ -35,9 +35,6 @@ class PlaylistController {
             });
             return res.status(200).json(userPlaylist);
         };
-        this.getToken = async (req) => {
-            return await req.decode;
-        };
     }
 }
 exports.default = new PlaylistController();
