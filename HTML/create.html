@@ -13,10 +13,10 @@
 </head>
 <body>
 <div>
-   <a href="index.html"><button type="button" class="btn btn-success" >
+   <a href="index.html"><button type="button" class="btn btn-success">
         Back to Home page
     </button></a>
-    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Create
     </button>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -238,7 +238,7 @@
                                 <td>${singers[i].band}</td>
                                 <td>${singers[i].description}</td>
                                 <td><img src="${singers[i].image}"  style="width: 100px; height: 100px"></td>
-                                <td>${singers[i].song.name}</td>
+                                <td>${singers[i].chant.name}</td>
                                 <td><button onclick="showDelete('${singers[i]._id}')" class="btn btn-danger">Delete</button></td>
                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="getIdEdit('${singers[i]._id}')">Edit</button></td>
                             </tr>`
@@ -258,12 +258,12 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            success: (songs) => {
+            success: (chants) => {
                 let htmlCategories = '';
-                for (let i = 0; i < songs.length; i++) {
-                    htmlCategories += `<option value="${songs[i]._id}" name="idSong">${songs[i].name}</option>`
+                for (let i = 0; i < chants.length; i++) {
+                    htmlCategories += `<option value="${chants[i]._id}" name="idSong">${chants[i].name}</option>`
                 }
-                console.log(songs)
+                console.log(chants)
                 $('#idSong').html(htmlCategories);
             }
         })
@@ -273,13 +273,13 @@
         let band = $('#band').val();
         let description = $('#description').val();
         let image = localStorage.getItem('image1');
-        let song = $('#idSong').val();
+        let chant = $('#idSong').val();
         let music = {
             name: name,
             band: band,
             description: description,
             image: image,
-            song : {_id:song}
+            chant : {_id:chant}
         }
         $.ajax({
             type: 'POST',
@@ -362,29 +362,30 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            success: (songs) => {
+            success: (chants) => {
                 let htmlCategories = '';
-                for (let i = 0; i < songs.length; i++) {
-                    htmlCategories += `<option value="${songs[i]._id}" name="idSongUpdate">${songs[i].name}</option>`
+                for (let i = 0; i < chants.length; i++) {
+                    htmlCategories += `<option value="${chants[i]._id}" name="idSongUpdate">${chants[i].name}</option>`
                 }
-                console.log(songs)
+                console.log(chants)
                 $('#idSongUpdate').html(htmlCategories);
             }
         })
     }
+
     function update() {
         let id = idEdit
         let name = $('#nameUpdate').val();
         let band = $('#bandUpdate').val();
         let description = $('#descriptionUpdate').val();
         let image = localStorage.getItem('image1');
-        let song = $('#idSongUpdate').val();
+        let chant = $('#idSongUpdate').val();
         let music = {
             name: name,
             band: band,
             description: description,
             image: image,
-            song : {_id:song}
+            chant : {_id:chant}
         }
         console.log(music)
 

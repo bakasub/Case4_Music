@@ -1,33 +1,33 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const music_1 = require("../model/music");
-class MusicController {
+const singer_1 = require("../model/singer");
+class SingerController {
     constructor() {
         this.getAll = async (req, res) => {
-            let products = await music_1.Music.find().populate('category', 'name');
+            let products = await singer_1.Singer.find().populate('chant', 'name');
             return res.status(200).json(products);
         };
         this.save = async (req, res) => {
-            let product = await music_1.Music.create(req.body);
+            let product = await singer_1.Singer.create(req.body);
             await product.save();
             return res.status(200).json(product);
         };
         this.remove = async (req, res) => {
             let id = req.params.id;
-            await music_1.Music.deleteOne({ _id: id });
+            await singer_1.Singer.deleteOne({ _id: id });
             return res.status(200).json({ message: `delete false` });
         };
         this.findIdEdit = async (req, res) => {
             let id = req.params.id;
-            let product = await music_1.Music.findById({ id });
+            let product = await singer_1.Singer.findById({ id });
             return res.status(200).json(product);
         };
         this.update = async (req, res) => {
             let id = req.params.id;
-            await music_1.Music.updateOne({ _id: id }, { $set: req.body });
+            await singer_1.Singer.updateOne({ _id: id }, { $set: req.body });
             return res.status(200).json({ message: `update success` });
         };
     }
 }
-exports.default = new MusicController();
-//# sourceMappingURL=music-controller.js.map
+exports.default = new SingerController();
+//# sourceMappingURL=singer-controller.js.map

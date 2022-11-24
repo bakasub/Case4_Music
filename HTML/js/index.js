@@ -17,7 +17,6 @@
 								<!-- image -->
 								<img class="img-responsive" src="${singers[i].image}" style="width: 330px; height: 330px" />
 								<!-- paragraph -->
-							
 							</div>
 							<!-- featured information -->
 							<div class="featured-item-info">
@@ -46,39 +45,13 @@
            headers: {
                'Content-Type': 'application/json'
            },
-           success: (songs) => {
+           success: (chants) => {
                let htmlCategories = '';
-               for (let i = 0; i < songs.length; i++) {
-                   htmlCategories += `<option value="${songs[i]._id}" name="idSong">${songs[i].name}</option>`
+               for (let i = 0; i < chants.length; i++) {
+                   htmlCategories += `<option value="${chants[i]._id}" name="idSong">${chants[i].name}</option>`
                }
-               console.log(songs)
+               console.log(chants)
                $('#idSong').html(htmlCategories);
-           }
-       })
-   }
-   function create() {
-       let name = $('#name').val();
-       let band = $('#band').val();
-       let description = $('#description').val();
-       let image = localStorage.getItem('image1');
-       let song = $('#idSong').val();
-       let music = {
-           name: name,
-           band: band,
-           description: description,
-           image: image,
-           song : {_id:song}
-       }
-       $.ajax({
-           type: 'POST',
-           url: 'http://localhost:8080/musics',
-           headers: {
-               'Content-Type': 'application/json'
-           },
-           data: JSON.stringify(music),
-           success: () => {
-               showAll()
-               resetFormCreate()
            }
        })
    }
@@ -96,53 +69,7 @@
        $('#idSong').val();
    }
 
-   function showDelete(id) {
-       const swalWithBootstrapButtons = Swal.mixin({
-           customClass: {
-               confirmButton: 'btn btn-success',
-               cancelButton: 'btn btn-danger'
-           },
-           buttonsStyling: false
-       })
 
-       swalWithBootstrapButtons.fire({
-           title: 'Are you sure?',
-           text: "You won't be able to revert this!",
-           icon: 'warning',
-           showCancelButton: true,
-           confirmButtonText: 'Yes, delete it!',
-           cancelButtonText: 'No, cancel!',
-           reverseButtons: true
-       }).then((result) => {
-
-           if (result.isConfirmed) {
-               $.ajax({
-                   type: 'DELETE',
-                   url: 'http://localhost:8080/musics/' + id,
-                   headers: {
-                       'Content-Type': 'application/json'
-                   },
-                   success: () => {
-                       showAll()
-                   }
-               })
-               swalWithBootstrapButtons.fire(
-                   'Deleted!',
-                   'Your file has been deleted.',
-                   'success'
-               )
-           } else if (
-               /* Read more about handling dismissals below */
-               result.dismiss === Swal.DismissReason.cancel
-           ) {
-               swalWithBootstrapButtons.fire(
-                   'Cancelled',
-                   'Your imaginary file is safe :)',
-                   'error'
-               )
-           }
-       })
-   }
    function find() {
        $.ajax({
            type: 'GET',
@@ -150,42 +77,13 @@
            headers: {
                'Content-Type': 'application/json'
            },
-           success: (songs) => {
+           success: (chants) => {
                let htmlCategories = '';
-               for (let i = 0; i < songs.length; i++) {
-                   htmlCategories += `<option value="${songs[i]._id}" name="idSongUpdate">${songs[i].name}</option>`
+               for (let i = 0; i < chants.length; i++) {
+                   htmlCategories += `<option value="${chants[i]._id}" name="idSongUpdate">${chants[i].name}</option>`
                }
-               console.log(songs)
+               console.log(chants)
                $('#idSongUpdate').html(htmlCategories);
-           }
-       })
-   }
-   function update() {
-       let id = idEdit
-       let name = $('#nameUpdate').val();
-       let band = $('#bandUpdate').val();
-       let description = $('#descriptionUpdate').val();
-       let image = localStorage.getItem('image1');
-       let song = $('#idSongUpdate').val();
-       let music = {
-           name: name,
-           band: band,
-           description: description,
-           image: image,
-           song : {_id:song}
-       }
-       console.log(music)
-
-       $.ajax({
-           type: 'PUT',
-           url: 'http://localhost:8080/musics/' + id,
-           headers: {
-               'Content-Type': 'application/json'
-           },
-           data: JSON.stringify(music),
-           success: () => {
-               showAll()
-
            }
        })
    }

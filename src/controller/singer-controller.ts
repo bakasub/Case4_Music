@@ -1,33 +1,31 @@
 import {Request,Response} from "express";
-import {Music} from "../model/music";
+import {Singer} from "../model/singer";
 
-class MusicController {
+class SingerController {
     getAll = async (req: Request,res: Response)=> {
-        let products = await Music.find().populate('category', 'name');
+        let products = await Singer.find().populate('chant', 'name');
         return res.status(200).json(products)
     }
     save = async (req: Request,res: Response)=>{
-        let product = await Music.create(req.body);
+        let product = await Singer.create(req.body);
         await product.save()
         return res.status(200).json(product);
     }
     remove = async (req: Request,res: Response)=>{
         let id = req.params.id
-        await Music.deleteOne({_id:id});
+        await Singer.deleteOne({_id:id});
         return res.status(200).json({message:`delete false`});
 
     }
      findIdEdit =  async (req: Request,res: Response)=> {
           let id = req.params.id
-         let product = await Music.findById({id});
+         let product = await Singer.findById({id});
          return res.status(200).json(product);
      }
     update = async (req: Request,res: Response)=>{
         let id = req.params.id
-        await Music.updateOne({_id:id}, {$set:req.body});
-        console.log(id)
+        await Singer.updateOne({_id:id}, {$set:req.body});
         return res.status(200).json({message:`update success`});
-
 }
 }
-export default new MusicController();
+export default new SingerController();

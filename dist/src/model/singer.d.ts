@@ -23,13 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { ICategory } from "./category";
-interface IMusic {
+import { IChant } from "./chant";
+interface ISinger {
     name?: string;
     band?: string;
     description?: string;
     image?: string;
-    category?: ICategory;
+    chant?: IChant;
 }
-declare const Music: import("mongoose").Model<IMusic, {}, {}, {}, any>;
-export { Music };
+declare const Singer: import("mongoose").Model<ISinger, {}, {}, {}, any>;
+export { Singer };

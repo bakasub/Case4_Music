@@ -1,23 +1,23 @@
 import {Schema,model} from 'mongoose';
-import {ICategory} from "./category";
-interface IMusic {
+import {IChant} from "./chant";
+interface ISinger {
     name ?: string;
     band ?: string;
     description?:string;
     image ?:string;
-    category ?: ICategory;
+    chant ?: IChant;
     
 }
-let ProductSchema = new Schema<IMusic>({
+let SingerSchema = new Schema<ISinger>({
     name:String,
     band: String,
     description:String,
     image:String,
-    category: {
+    chant : {
         type: Schema.Types.ObjectId,
-        ref: 'Category'
+        ref: 'Chant'
     }
 });
 
-const Music = model<IMusic>('Music',ProductSchema);
-export {Music}
+const Singer = model<ISinger>('Singer',SingerSchema);
+export {Singer}

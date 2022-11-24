@@ -5,11 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const express_1 = require("express");
-const music_controller_1 = __importDefault(require("../controller/music-controller"));
+const song_router_1 = require("./song-router");
+const singer_controller_1 = __importDefault(require("../controller/singer-controller"));
 exports.router = (0, express_1.Router)();
-exports.router.get('/musics', music_controller_1.default.getAll);
-exports.router.post('/musics', music_controller_1.default.save);
-exports.router.delete('/musics/:id', music_controller_1.default.remove);
-exports.router.put('/musics/:id', music_controller_1.default.update);
-exports.router.get('/musics/:id', music_controller_1.default.findIdEdit);
+exports.router.get('/musics', singer_controller_1.default.getAll);
+exports.router.post('/musics', singer_controller_1.default.save);
+exports.router.delete('/musics/:id', singer_controller_1.default.remove);
+exports.router.put('/musics/:id', singer_controller_1.default.update);
+exports.router.get('/musics/:id', singer_controller_1.default.findIdEdit);
+exports.router.use('/categories', song_router_1.songRouter);
 //# sourceMappingURL=router.js.map
