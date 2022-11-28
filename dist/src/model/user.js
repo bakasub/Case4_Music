@@ -4,8 +4,9 @@ exports.User = void 0;
 const mongoose_1 = require("mongoose");
 const userSchema = new mongoose_1.Schema({
     username: String,
-    password: String
+    password: String,
+    phoneNumber: String
 });
-const User = (0, mongoose_1.model)('User', userSchema);
+const User = (0, mongoose_1.model)('user', userSchema);
 exports.User = User;
 //# sourceMappingURL=user.js.map

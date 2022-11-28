@@ -1,6 +1,8 @@
 import {Router} from "express";
-import userController from "../controller/user-controller";
+import UserController from "../controller/user-controller";
 
 export const userRouter = Router();
-userRouter.get('/user',userController.getAll);
-userRouter.post('/user', userController.addUser);
+userRouter.get('/',UserController.getAll);
+userRouter.post('/register', UserController.register);
+userRouter.post('/login', UserController.login);
+userRouter.put('/changePassword/:id',UserController.changePassword)

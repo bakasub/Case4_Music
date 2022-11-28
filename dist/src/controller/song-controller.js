@@ -4,8 +4,7 @@ const song_1 = require("../model/song");
 class SongController {
     constructor() {
         this.getAll = async (req, res) => {
-            let songs = await song_1.Song.find().populate("User");
-            console.log(songs);
+            let songs = await song_1.Song.find().populate("user");
             return res.status(200).json(songs);
         };
         this.addSong = async (req, res) => {
@@ -21,10 +20,14 @@ class SongController {
             });
         };
         this.deleteSong = async (req, res) => {
-            await song_1.Song.deleteOne({ _id: req.params.id }, req.body);
+            await song_1.Song.deleteOne({ _id: req.params.id });
             return res.status(200).json({
                 message: "delete success"
             });
+        };
+        this.filterSongByID = async (req, res) => {
+            let song = await song_1.Song.findById(req.params.id);
+            res.status(200).json(song);
         };
         this.findByName = async (req, res) => {
             let findSong = await song_1.Song.find({
@@ -34,10 +37,6 @@ class SongController {
                 ]
             });
             return res.status(201).json(findSong);
-        };
-        this.findByIdSong = async (req, res) => {
-            let p = await song_1.Song.findById(req.params.id);
-            res.status(200).json(p);
         };
     }
 }

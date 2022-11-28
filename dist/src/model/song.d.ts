@@ -24,9 +24,9 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { IUser } from "./user";
-interface ISong {
-    User?: IUser;
-    name?: string;
+export interface ISong {
+    user?: IUser;
+    name: string;
     artist?: string;
     image?: string;
     file?: string;

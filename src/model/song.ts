@@ -1,9 +1,9 @@
 import {Schema, model} from 'mongoose'
 import {IUser} from "./user";
 
-interface ISong {
-    User?: IUser;
-    name?: string;
+export interface ISong {
+    user?: IUser;
+    name: string
     artist?: string;
     image?: string;
     file?: string;
@@ -13,11 +13,11 @@ interface ISong {
 }
 
 const songSchema = new Schema<ISong>({
-    User: {
+    user: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "user"
     },
-    name:String,
+    name: String,
     artist: String,
     image: String,
     file: String,
@@ -26,5 +26,5 @@ const songSchema = new Schema<ISong>({
     composer: String
 });
 
-const Song = model<ISong>('Song', songSchema);
+const Song = model<ISong>("song", songSchema);
 export {Song};
