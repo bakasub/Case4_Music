@@ -3,7 +3,7 @@ import {Singer} from "../model/singer";
 
 class SingerController {
     getAll = async (req: Request,res: Response)=> {
-        let products = await Singer.find().populate('chant', 'name');
+        let products = await Singer.find()
         return res.status(200).json(products)
     }
     save = async (req: Request,res: Response)=>{

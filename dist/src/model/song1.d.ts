@@ -23,11 +23,10 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-export interface ISinger {
+import { ISinger } from "./singer";
+export interface ISong1 {
     name?: string;
-    band?: string;
-    description?: string;
-    image?: string;
+    singer?: ISinger;
 }
-declare const Singer: import("mongoose").Model<ISinger, {}, {}, {}, any>;
-export { Singer };
+declare const Song1: import("mongoose").Model<ISong1, {}, {}, {}, any>;
+export { Song1 };

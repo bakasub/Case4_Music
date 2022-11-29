@@ -4,7 +4,7 @@ const singer_1 = require("../model/singer");
 class SingerController {
     constructor() {
         this.getAll = async (req, res) => {
-            let products = await singer_1.Singer.find().populate('chant', 'name');
+            let products = await singer_1.Singer.find();
             return res.status(200).json(products);
         };
         this.save = async (req, res) => {
@@ -19,7 +19,7 @@ class SingerController {
         };
         this.findIdEdit = async (req, res) => {
             let id = req.params.id;
-            let product = await singer_1.Singer.findById({ id });
+            let product = await singer_1.Singer.find({ _id: id });
             return res.status(200).json(product);
         };
         this.update = async (req, res) => {
